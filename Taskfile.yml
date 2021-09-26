@@ -1,0 +1,27 @@
+version: '3'
+
+tasks:
+  init:
+    desc: Initialize ent scheme definition
+    cmds:
+      - go run -mod=mod entgo.io/ent/cmd/ent init {{.CLI_ARGS}}
+
+  desc:
+    desc: Output schema description
+    cmds:
+      - go run -mod=mod entgo.io/ent/cmd/ent describe ./ent/schema
+
+  gen:
+    desc: Generate schema definition
+    cmds:
+      - go generate ./ent
+
+  graph:
+    desc: Make grapth of dependency modules.
+    cmds:
+      - depm m --dot --dot-config dot-config.toml | dot -Tpng -o ./dependency.png
+    sources:
+      - ./go.mod
+      - '**/*.go'
+    generates:
+      - ./dependency.png

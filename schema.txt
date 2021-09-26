@@ -1,0 +1,31 @@
+BinaryFile:
+	+------------+-----------+--------+----------+----------+---------+---------------+-----------+-----------------------------+------------+
+	|   Field    |   Type    | Unique | Optional | Nillable | Default | UpdateDefault | Immutable |          StructTag          | Validators |
+	+------------+-----------+--------+----------+----------+---------+---------------+-----------+-----------------------------+------------+
+	| id         | int       | false  | false    | false    | false   | false         | false     | json:"id,omitempty"         |          0 |
+	| filename   | string    | true   | false    | false    | false   | false         | false     | json:"filename,omitempty"   |          1 |
+	| body       | []byte    | false  | true     | true     | false   | false         | false     | json:"body,omitempty"       |          0 |
+	| created_at | time.Time | false  | false    | false    | true    | false         | false     | json:"created_at,omitempty" |          0 |
+	| updated_at | time.Time | false  | false    | false    | true    | false         | false     | json:"updated_at,omitempty" |          0 |
+	+------------+-----------+--------+----------+----------+---------+---------------+-----------+-----------------------------+------------+
+	+-------+------+---------+---------+----------+--------+----------+
+	| Edge  | Type | Inverse | BackRef | Relation | Unique | Optional |
+	+-------+------+---------+---------+----------+--------+----------+
+	| owner | User | true    | owned   | M2O      | true   | false    |
+	+-------+------+---------+---------+----------+--------+----------+
+	
+User:
+	+------------+-----------+--------+----------+----------+---------+---------------+-----------+-----------------------------+------------+
+	|   Field    |   Type    | Unique | Optional | Nillable | Default | UpdateDefault | Immutable |          StructTag          | Validators |
+	+------------+-----------+--------+----------+----------+---------+---------------+-----------+-----------------------------+------------+
+	| id         | int       | false  | false    | false    | false   | false         | false     | json:"id,omitempty"         |          0 |
+	| username   | string    | true   | false    | false    | false   | false         | false     | json:"username,omitempty"   |          1 |
+	| created_at | time.Time | false  | false    | false    | true    | false         | false     | json:"created_at,omitempty" |          0 |
+	| updated_at | time.Time | false  | false    | false    | true    | false         | false     | json:"updated_at,omitempty" |          0 |
+	+------------+-----------+--------+----------+----------+---------+---------------+-----------+-----------------------------+------------+
+	+-------+------------+---------+---------+----------+--------+----------+
+	| Edge  |    Type    | Inverse | BackRef | Relation | Unique | Optional |
+	+-------+------------+---------+---------+----------+--------+----------+
+	| owned | BinaryFile | false   |         | O2M      | false  | true     |
+	+-------+------------+---------+---------+----------+--------+----------+
+	
