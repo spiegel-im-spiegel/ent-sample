@@ -4,9 +4,9 @@
 
 このリポジトリは拙文「[PostgreSQL と ORM と Logging と](https://zenn.dev/spiegel/books/a-study-in-postgresql)」の説明用サンプルコードとして公開したものです。
 
-モジュール名を `sample` としているためそのままインポートして使うことは出来ません。あしからずご了承ください。
+以下のようにモジュール名を `sample` としているためそのままインポートして使うことは出来ません。あしからずご了承ください。
 
-```textile:go.mod
+```
 module sample
 
 go 1.17
